@@ -1,0 +1,10 @@
+[run]
+source = cookie_log_parser
+
+omit =
+	*/__init__.py
+	*/__main__.py
+	cookie_log_parser/main.py
+
+[report]
+show_missing = true
