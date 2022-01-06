@@ -5,6 +5,7 @@ omit =
 	*/__init__.py
 	*/__main__.py
 	cookie_log_parser/main.py
+	cookie_log_parser/src/exceptions.py
 
 [report]
 show_missing = true
