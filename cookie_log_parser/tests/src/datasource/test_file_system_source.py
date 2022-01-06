@@ -1,5 +1,4 @@
 from cookie_log_parser.src.datasource.file_system_source import FileSystemSource
-from cookie_log_parser.src.datasource.source_parser import get_datasource
 
 
 class TestFileSystemSource:
