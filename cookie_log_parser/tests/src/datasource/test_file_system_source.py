@@ -6,7 +6,7 @@ class TestFileSystemSource:
         source = FileSystemSource()
         path = get_file_path("cookie_log.csv")
         lines = source.read_file(path)
-        assert len(lines) == 9
+        assert len(lines) == 13
 
     def test_file_exists(self, get_file_path):
         source = FileSystemSource()
