@@ -31,8 +31,9 @@ class CookieLogParser:
         if len(file_contents) <= 1:
             raise NoDataException("File has no data or only the header row.")
 
-        latest_timestamp = None
+        cookie_frequency_map = dict()
         latest_cookies = []
+        max_frequency = 0
         for row in file_contents[1:]:
             row_contents = row.split(",")
             if len(row_contents) == 1:
@@ -43,14 +44,19 @@ class CookieLogParser:
                 continue
             timestamp = DateUtils.get_date(timestamp)
             if self.date.date() == timestamp.date():
-                if latest_timestamp is None:
-                    latest_timestamp = timestamp
-                    if cookie not in latest_cookies:
-                        latest_cookies.append(cookie)
-                elif latest_timestamp == timestamp:
-                    if cookie not in latest_cookies:
-                        latest_cookies.append(cookie)
+                frequency = cookie_frequency_map.get(cookie)
+                if frequency is None:
+                    frequency = 1
+                else:
+                    frequency += 1
+                cookie_frequency_map[cookie] = frequency
+                if frequency > max_frequency:
+                    max_frequency = frequency
             elif self.date.date() > timestamp.date():
                 break
+
+        for cookie in cookie_frequency_map.keys():
+            if cookie_frequency_map[cookie] == max_frequency:
+                latest_cookies.append(cookie)
 
         return list(latest_cookies)
