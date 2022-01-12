@@ -5,7 +5,6 @@ from cookie_log_parser.src.datasource.source import Source
 
 
 class FileSystemSource(Source):
-
     def get_files_in_path_with_extension(self, dir_path: str, extension: str) -> List[str]:
         files_with_extn = []
         for root, dirs, files in os.walk(dir_path):
